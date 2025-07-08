@@ -1,0 +1,16 @@
+export enum Currency {
+  USD = 'USD',
+  EUR = 'EUR',
+  JPY = 'JPY',
+  GBP = 'GBP',
+  AUD = 'AUD',
+  CAD = 'CAD',
+  CHF = 'CHF',
+  CNY = 'CNY',
+  SEK = 'SEK',
+  NZD = 'NZD',
+  BRL = 'BRL',
+  INR = 'INR',
+  RUB = 'RUB',
+  ZAR = 'ZAR',
+}
