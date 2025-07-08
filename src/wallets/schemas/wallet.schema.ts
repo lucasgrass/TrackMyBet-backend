@@ -3,31 +3,48 @@ import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { User } from "src/users/schemas/user.schema";
 import { Currency } from "src/enums/currency.enum";
 
+@Schema()
+export class WalletCost {
+    @Prop({ type: String, required: true })
+    name: string;
+
+    @Prop({ type: Number, required: true })
+    amount: number; // cents
+
+    @Prop({ type: Date, required: true })
+    date: Date;
+
+    @Prop({type: String})
+    description: string
+}
+
+export const WalletCostSchema = SchemaFactory.createForClass(WalletCost);
+
 @Schema({ timestamps: true})
 export class Wallet extends Document {
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true })
-    user: User
+    user: User;
 
     @Prop({ type: String, required: true })
     name: string;
 
-    @Prop({ type: String, equired: true, enum: Currency })
+    @Prop({ type: String, required: true, enum: Currency })
     currency: Currency;
 
     @Prop({ type: Number, required: true })
-    initialBalance: number;
+    initialBalance: number; // cents
 
     @Prop({ type: Number })
     balance: number;
 
     @Prop({ type: Number, default: 0 })
-    deposit: number;
+    deposit: number; // cents
 
     @Prop({ type: Number, default: 0 })
-    withdraw: number;
+    withdraw: number; // cents
 
     @Prop({ type: Number, default: 0 })
-    roi: number;
+    roi: number; // e.g.: 50% = 50
 
     @Prop({ type: Number, default: 0 })
     numberOfBets: number;
@@ -44,14 +61,14 @@ export class Wallet extends Document {
     @Prop({ type: Number, default: 0 })
     numberOfOpenBets: number;
     
-    @Prop({ type: Number, default: 0 })
-    unitValue: number;
+    @Prop({ type: Number, required: true, default: 0 })
+    unitValue: number; // cents
+
+    @Prop({ type: [WalletCostSchema], default: [] })
+    costs: WalletCost[]; // cents
 
     @Prop({ type: Number, default: 0 })
-    cost: number;
-
-    @Prop({ type: Number, default: 0 })
-    netResult: number;
+    netResult: number; // cents
 
     @Prop({ type: Number, default: 0 })
     maxWinningStreak: number;

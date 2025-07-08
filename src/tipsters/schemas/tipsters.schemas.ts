@@ -7,7 +7,7 @@ export class Tipster extends Document {
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true })
     user: User;
 
-    @Prop({ required: true })
+    @Prop({ type: String, required: true })
     name: string;
 
     @Prop({ type: Number, default: 0 })

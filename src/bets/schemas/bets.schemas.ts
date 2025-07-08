@@ -24,13 +24,13 @@ export class Bet extends Document {
     title: string;
 
     @Prop({ type: Number, required: true})
-    odd: number;
+    odd: number; // e.g.: 2.30
 
     @Prop({ type: String, enum: Sport, required: true })
     sports: Sport;
 
     @Prop({ type: Number, required: true })
-    value: number;
+    value: number; // cents
 
     @Prop({ type: String, enum: BetStatus, required: true })
     betStatus: BetStatus;
@@ -39,7 +39,7 @@ export class Bet extends Document {
     isCashout: boolean;
 
     @Prop({ type: Number, default: 0 })
-    cashoutValue: number;
+    cashoutValue: number; // cents
 
     @Prop({ type: String, enum: BetType, default: BetType.SIMPLE})
     betType: BetType;
@@ -49,7 +49,9 @@ export class Bet extends Document {
 
     @Prop({ type: String })
     comments: String;
-    
+
+    @Prop({ type: Number, default: 0 })
+    resultValue: number; // cents
 }
 
 export const BetsSchema = SchemaFactory.createForClass(Bet);
