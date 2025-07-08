@@ -25,7 +25,7 @@ export enum Sport {
   WATER_POLO = 'Water Polo',
 
   // eSports
-  CSGO = 'CS:GO',
+  CS2 = 'CS2',
   LOL = 'League of Legends',
   DOTA2 = 'Dota 2',
   VALORANT = 'Valorant',
