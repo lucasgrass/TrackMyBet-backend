@@ -24,8 +24,8 @@ describe('UsersController', () => {
           useValue: mockUsersService,
         },
         {
-          provide: getModelToken(User.name), // <-- evita forFeature
-          useValue: {}, // um mock vazio é suficiente, já que você mockou o service
+          provide: getModelToken(User.name),
+          useValue: {},
         },
       ],
     }).compile();
