@@ -1,19 +1,12 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { UsersService } from './users.service';
 import { UsersController } from './users.controller';
+import { UsersService } from './users.service';
 import { getModelToken } from '@nestjs/mongoose';
 import { User } from './schemas/user.schema';
 
-describe('UsersService', () => {
+describe('UsersController', () => {
   let controller: UsersController;
 
-  const mockUserModel = {
-    create: jest.fn(),
-    find: jest.fn(),
-    findById: jest.fn(),
-    findByIdAndUpdate: jest.fn(),
-    findByIdAndDelete: jest.fn(),
-  };
   const mockUsersService = {
     create: jest.fn(),
     findAll: jest.fn(),
@@ -31,8 +24,8 @@ describe('UsersService', () => {
           useValue: mockUsersService,
         },
         {
-          provide: getModelToken(User.name),
-          useValue: mockUserModel,
+          provide: getModelToken(User.name), // <-- evita forFeature
+          useValue: {}, // um mock vazio é suficiente, já que você mockou o service
         },
       ],
     }).compile();
