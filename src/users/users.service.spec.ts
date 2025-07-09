@@ -1,10 +1,11 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UsersService } from './users.service';
+import { UsersController } from './users.controller';
 import { getModelToken } from '@nestjs/mongoose';
 import { User } from './schemas/user.schema';
 
 describe('UsersService', () => {
-  let service: UsersService;
+  let controller: UsersController;
 
   const mockUserModel = {
     create: jest.fn(),
@@ -13,11 +14,22 @@ describe('UsersService', () => {
     findByIdAndUpdate: jest.fn(),
     findByIdAndDelete: jest.fn(),
   };
+  const mockUsersService = {
+    create: jest.fn(),
+    findAll: jest.fn(),
+    findOne: jest.fn(),
+    update: jest.fn(),
+    remove: jest.fn(),
+  };
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
+      controllers: [UsersController],
       providers: [
-        UsersService,
+        {
+          provide: UsersService,
+          useValue: mockUsersService,
+        },
         {
           provide: getModelToken(User.name),
           useValue: mockUserModel,
@@ -25,10 +37,10 @@ describe('UsersService', () => {
       ],
     }).compile();
 
-    service = module.get<UsersService>(UsersService);
+    controller = module.get<UsersController>(UsersController);
   });
 
   it('should be defined', () => {
-    expect(service).toBeDefined();
+    expect(controller).toBeDefined();
   });
 });
