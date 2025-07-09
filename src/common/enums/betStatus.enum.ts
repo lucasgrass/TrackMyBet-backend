@@ -3,5 +3,5 @@ export enum BetStatus {
   VOID = 'VOID',
   WON = 'WON',
   LOST = 'LOST',
-  CASHOUT = 'CASHOUT'
+  CASHOUT = 'CASHOUT',
 }

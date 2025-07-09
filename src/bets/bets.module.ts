@@ -6,6 +6,6 @@ import { WalletsModule } from 'src/wallets/wallets.module';
 @Module({
   imports: [WalletsModule],
   controllers: [BetsController],
-  providers: [BetsService]
+  providers: [BetsService],
 })
 export class BetsModule {}

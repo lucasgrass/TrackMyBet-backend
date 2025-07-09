@@ -6,6 +6,6 @@ import { UsersModule } from 'src/users/users.module';
 @Module({
   imports: [UsersModule],
   controllers: [WalletsController],
-  providers: [WalletsService]
+  providers: [WalletsService],
 })
 export class WalletsModule {}
